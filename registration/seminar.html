@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夏季セミナー参加登録 - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../events/index.html" class="nav-link">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">参加登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../abstracts/index.html" class="nav-link">抄録投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../members/index.html" class="nav-link">参加者専用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>夏季セミナー2025 参加登録</h1>
+            <p>2025年6月15日（土） 13:00-17:00 東京国際会議場</p>
+        </div>
+    </div>
+
+    <main class="content">
+        <div class="container">
+            <div class="back-link">
+                <a href="index.html">← 参加登録一覧に戻る</a>
+            </div>
+
+            <form class="registration-form" id="seminarForm">
+                <div class="form-section">
+                    <h2>参加者情報</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lastName">姓 *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">名 *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lastNameKana">姓（カナ） *</label>
+                            <input type="text" id="lastNameKana" name="lastNameKana" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstNameKana">名（カナ） *</label>
+                            <input type="text" id="firstNameKana" name="firstNameKana" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">メールアドレス *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">電話番号 *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="affiliation">所属機関</label>
+                        <input type="text" id="affiliation" name="affiliation">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>参加区分・参加費</h2>
+                    
+                    <div class="form-group">
+                        <label>会員区分 *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="memberType" value="member" required>
+                                <span class="radio-text">会員（3,000円）</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="memberType" value="non-member" required>
+                                <span class="radio-text">非会員（5,000円）</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>支払い方法</h2>
+                    
+                    <div class="form-group">
+                        <label>お支払い方法 *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="credit" required>
+                                <span class="radio-text">クレジットカード（即時決済）</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="bank" required>
+                                <span class="radio-text">銀行振込（請求書発行）</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="paymentMethod" value="onsite" required>
+                                <span class="radio-text">現地決済</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>特記事項</h2>
+                    
+                    <div class="form-group">
+                        <label for="specialRequests">アクセシビリティ等のご要望</label>
+                        <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="車椅子でのアクセス、その他のご要望があればお書きください"></textarea>
+                    </div>
+                </div>
+
+                <div class="total-amount">
+                    <h3>合計金額: <span id="totalAmount">0</span>円</h3>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">戻る</button>
+                    <button type="submit" class="btn btn-primary">決済画面へ進む</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // 金額計算
+        function calculateTotal() {
+            let total = 0;
+            
+            const memberType = document.querySelector('input[name="memberType"]:checked');
+            if (memberType) {
+                switch(memberType.value) {
+                    case 'member': total += 3000; break;
+                    case 'non-member': total += 5000; break;
+                }
+            }
+            
+            document.getElementById('totalAmount').textContent = total.toLocaleString();
+        }
+        
+        // イベントリスナー
+        document.querySelectorAll('input[name="memberType"]').forEach(input => {
+            input.addEventListener('change', calculateTotal);
+        });
+        
+        // フォーム送信
+        document.getElementById('seminarForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            sessionStorage.setItem('seminarRegistration', JSON.stringify(data));
+            sessionStorage.setItem('totalAmount', document.getElementById('totalAmount').textContent);
+            
+            window.location.href = 'payment.html?event=seminar';
+        });
+        
+        // 初期計算
+        calculateTotal();
+    </script>
+</body>
+</html>

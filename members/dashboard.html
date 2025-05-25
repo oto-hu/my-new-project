@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参加者ダッシュボード - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../events/index.html" class="nav-link">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../registration/index.html" class="nav-link">参加登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../abstracts/index.html" class="nav-link">抄録投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">参加者専用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>参加者ダッシュボード</h1>
+            <p>ようこそ、<span id="participantName">参加者</span>様</p>
+            <div class="header-actions">
+                <button id="logoutBtn" class="btn btn-secondary">ログアウト</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="content">
+        <div class="container">
+            <div class="dashboard-grid">
+                <div class="dashboard-section">
+                    <h2>参加登録情報</h2>
+                    <div class="info-card">
+                        <div class="info-item">
+                            <strong>参加者番号:</strong> <span id="participantNumber">REG12345678</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>登録イベント:</strong> 2025年度学術会議
+                        </div>
+                        <div class="info-item">
+                            <strong>参加日程:</strong> 9月15日（月）〜17日（水）
+                        </div>
+                        <div class="info-item">
+                            <strong>会員区分:</strong> 一般会員
+                        </div>
+                        <div class="info-item">
+                            <strong>決済状況:</strong> <span class="status-paid">決済完了</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary">登録内容の変更</button>
+                        <button class="btn btn-secondary">領収書ダウンロード</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-section">
+                    <h2>重要なお知らせ</h2>
+                    <div class="notifications">
+                        <div class="notification-item new">
+                            <div class="notification-icon">📢</div>
+                            <div class="notification-content">
+                                <h4>会場へのアクセス情報を更新しました</h4>
+                                <p>新型コロナウイルス感染対策により、入場方法が変更になりました。</p>
+                                <span class="notification-date">2025年5月20日</span>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon">📅</div>
+                            <div class="notification-content">
+                                <h4>タイムテーブルが確定しました</h4>
+                                <p>各セッションの詳細スケジュールを公開しました。</p>
+                                <span class="notification-date">2025年5月18日</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-section">
+                    <h2>QRコード参加証</h2>
+                    <div class="qr-ticket">
+                        <div class="qr-code">
+                            <div class="qr-placeholder">
+                                <div class="qr-pattern"></div>
+                                QR CODE
+                            </div>
+                        </div>
+                        <div class="ticket-info">
+                            <p><strong>参加者番号:</strong> REG12345678</p>
+                            <p><strong>氏名:</strong> テスト 太郎</p>
+                            <p><strong>所属:</strong> テスト大学</p>
+                        </div>
+                        <div class="ticket-actions">
+                            <button class="btn btn-primary">チケットをダウンロード</button>
+                            <button class="btn btn-secondary">印刷用ページ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-section">
+                    <h2>配布資料</h2>
+                    <div class="materials-list">
+                        <div class="material-item">
+                            <div class="material-icon">📄</div>
+                            <div class="material-info">
+                                <h4>参加者ガイドブック</h4>
+                                <p>イベント概要・注意事項・プログラム</p>
+                                <span class="file-size">PDF, 2.1MB</span>
+                            </div>
+                            <a href="materials.html?file=guidebook" class="btn btn-secondary">ダウンロード</a>
+                        </div>
+                        <div class="material-item">
+                            <div class="material-icon">📊</div>
+                            <div class="material-info">
+                                <h4>講演資料集</h4>
+                                <p>基調講演・招待講演の資料</p>
+                                <span class="file-size">PDF, 15.3MB</span>
+                            </div>
+                            <a href="materials.html?file=lectures" class="btn btn-secondary">ダウンロード</a>
+                        </div>
+                        <div class="material-item">
+                            <div class="material-icon">📚</div>
+                            <div class="material-info">
+                                <h4>論文集</h4>
+                                <p>採択された発表論文の抄録集</p>
+                                <span class="file-size">PDF, 8.7MB</span>
+                            </div>
+                            <a href="materials.html?file=proceedings" class="btn btn-secondary">ダウンロード</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-section">
+                    <h2>詳細スケジュール</h2>
+                    <div class="schedule-summary">
+                        <div class="schedule-day">
+                            <h4>9月15日（月）</h4>
+                            <ul>
+                                <li>9:00-9:30 受付・開場</li>
+                                <li>9:30-10:30 開会式・基調講演</li>
+                                <li>10:45-12:00 口頭発表セッション1</li>
+                                <li>13:00-14:30 口頭発表セッション2</li>
+                                <li>14:45-16:15 ポスター発表</li>
+                            </ul>
+                        </div>
+                        <div class="schedule-day">
+                            <h4>9月16日（火）</h4>
+                            <ul>
+                                <li>9:00-10:30 招待講演・パネル討論</li>
+                                <li>10:45-12:00 口頭発表セッション3</li>
+                                <li>13:00-14:30 口頭発表セッション4</li>
+                                <li>14:45-16:15 ワークショップ</li>
+                                <li>18:00-20:00 懇親会</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary">詳細スケジュールを見る</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-section">
+                    <h2>クイックアクション</h2>
+                    <div class="quick-actions">
+                        <a href="materials.html" class="action-btn">
+                            <div class="action-icon">📂</div>
+                            <span>配布資料</span>
+                        </a>
+                        <a href="../contact.html" class="action-btn">
+                            <div class="action-icon">📧</div>
+                            <span>お問い合わせ</span>
+                        </a>
+                        <a href="../registration/index.html" class="action-btn">
+                            <div class="action-icon">📝</div>
+                            <span>追加登録</span>
+                        </a>
+                        <button class="action-btn" onclick="window.print()">
+                            <div class="action-icon">🖨️</div>
+                            <span>印刷</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // ログイン状態確認
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = sessionStorage.getItem('memberLoggedIn') || localStorage.getItem('memberLoggedIn');
+            const participantNumber = sessionStorage.getItem('participantNumber') || localStorage.getItem('participantNumber');
+            
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // 参加者情報を表示
+            if (participantNumber) {
+                document.getElementById('participantNumber').textContent = participantNumber;
+            }
+            
+            // 参加者名を設定（実際の実装では登録情報から取得）
+            document.getElementById('participantName').textContent = 'テスト 太郎';
+        });
+
+        // ログアウト処理
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (confirm('ログアウトしますか？')) {
+                sessionStorage.removeItem('memberLoggedIn');
+                sessionStorage.removeItem('participantNumber');
+                sessionStorage.removeItem('participantEmail');
+                localStorage.removeItem('memberLoggedIn');
+                localStorage.removeItem('participantNumber');
+                
+                window.location.href = 'login.html';
+            }
+        });
+
+        // 通知クリック処理
+        document.querySelectorAll('.notification-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // 新着マークを削除
+                this.classList.remove('new');
+            });
+        });
+
+        // QRコードダウンロード
+        document.querySelector('.qr-ticket .btn-primary').addEventListener('click', function() {
+            // 実際の実装では、PDFまたは画像ファイルを生成してダウンロード
+            alert('QRコードチケットをダウンロードします。');
+        });
+    </script>
+</body>
+</html>

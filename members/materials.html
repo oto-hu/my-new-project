@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配布資料 - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../events/index.html" class="nav-link">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../registration/index.html" class="nav-link">参加登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../abstracts/index.html" class="nav-link">抄録投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">参加者専用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>配布資料</h1>
+            <p>参加者専用の資料ダウンロードページ</p>
+        </div>
+    </div>
+
+    <main class="content">
+        <div class="container">
+            <div class="back-link">
+                <a href="dashboard.html">← ダッシュボードに戻る</a>
+            </div>
+
+            <section class="content-section">
+                <h2>📋 参加者ガイドブック</h2>
+                <div class="material-details">
+                    <div class="material-card">
+                        <div class="material-header">
+                            <div class="material-icon large">📄</div>
+                            <div class="material-info">
+                                <h3>2025年度学術会議 参加者ガイドブック</h3>
+                                <p>イベントの詳細情報、注意事項、会場案内、プログラム概要</p>
+                                <div class="file-details">
+                                    <span class="file-type">PDF</span>
+                                    <span class="file-size">2.1MB</span>
+                                    <span class="update-date">更新日: 2025年5月20日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="material-content">
+                            <h4>含まれる内容</h4>
+                            <ul>
+                                <li>会場アクセス・駐車場情報</li>
+                                <li>受付・チェックイン手順</li>
+                                <li>感染対策ガイドライン</li>
+                                <li>各セッション概要</li>
+                                <li>懇親会・ネットワーキング情報</li>
+                                <li>Wi-Fi・設備利用案内</li>
+                            </ul>
+                        </div>
+                        <div class="material-actions">
+                            <button class="btn btn-primary" onclick="downloadFile('guidebook')">ダウンロード</button>
+                            <button class="btn btn-secondary" onclick="previewFile('guidebook')">プレビュー</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📊 講演資料集</h2>
+                <div class="material-details">
+                    <div class="material-card">
+                        <div class="material-header">
+                            <div class="material-icon large">📊</div>
+                            <div class="material-info">
+                                <h3>基調講演・招待講演資料集</h3>
+                                <p>著名研究者による基調講演と招待講演のスライド資料</p>
+                                <div class="file-details">
+                                    <span class="file-type">PDF</span>
+                                    <span class="file-size">15.3MB</span>
+                                    <span class="update-date">更新日: 2025年5月22日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="material-content">
+                            <h4>収録講演</h4>
+                            <ul>
+                                <li>基調講演：「AI時代の研究倫理」- 田中教授（東京大学）</li>
+                                <li>招待講演1：「量子コンピュータの現在と未来」- 佐藤博士（理研）</li>
+                                <li>招待講演2：「持続可能な社会に向けた技術革新」- 鈴木氏（○○研究所）</li>
+                                <li>パネル討論：「次世代研究者への提言」</li>
+                            </ul>
+                        </div>
+                        <div class="material-actions">
+                            <button class="btn btn-primary" onclick="downloadFile('lectures')">ダウンロード</button>
+                            <button class="btn btn-secondary" onclick="previewFile('lectures')">プレビュー</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 論文集</h2>
+                <div class="material-details">
+                    <div class="material-card">
+                        <div class="material-header">
+                            <div class="material-icon large">📚</div>
+                            <div class="material-info">
+                                <h3>2025年度学術会議 論文集</h3>
+                                <p>採択された発表論文の抄録とプログラム詳細</p>
+                                <div class="file-details">
+                                    <span class="file-type">PDF</span>
+                                    <span class="file-size">8.7MB</span>
+                                    <span class="update-date">更新日: 2025年5月25日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="material-content">
+                            <h4>収録内容</h4>
+                            <ul>
+                                <li>口頭発表論文抄録（50件）</li>
+                                <li>ポスター発表論文抄録（100件）</li>
+                                <li>詳細プログラム・タイムテーブル</li>
+                                <li>発表者索引</li>
+                                <li>キーワード索引</li>
+                                <li>研究分野別分類</li>
+                            </ul>
+                        </div>
+                        <div class="material-actions">
+                            <button class="btn btn-primary" onclick="downloadFile('proceedings')">ダウンロード</button>
+                            <button class="btn btn-secondary" onclick="previewFile('proceedings')">プレビュー</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📑 追加資料</h2>
+                <div class="additional-materials">
+                    <div class="material-item">
+                        <div class="material-icon">🗺️</div>
+                        <div class="material-info">
+                            <h4>会場フロアマップ</h4>
+                            <p>会場内の詳細地図・各セッション会場の位置</p>
+                            <span class="file-size">PDF, 0.8MB</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="downloadFile('floormap')">ダウンロード</button>
+                    </div>
+
+                    <div class="material-item">
+                        <div class="material-icon">📋</div>
+                        <div class="material-info">
+                            <h4>評価フォーム</h4>
+                            <p>講演・セッション評価用フォーム</p>
+                            <span class="file-size">PDF, 0.3MB</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="downloadFile('evaluation')">ダウンロード</button>
+                    </div>
+
+                    <div class="material-item">
+                        <div class="material-icon">📇</div>
+                        <div class="material-info">
+                            <h4>参加者名簿</h4>
+                            <p>参加者リスト（希望者のみ掲載）</p>
+                            <span class="file-size">PDF, 1.2MB</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="downloadFile('participants')">ダウンロード</button>
+                    </div>
+
+                    <div class="material-item">
+                        <div class="material-icon">📞</div>
+                        <div class="material-info">
+                            <h4>緊急連絡先一覧</h4>
+                            <p>会場・運営事務局・緊急時連絡先</p>
+                            <span class="file-size">PDF, 0.2MB</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="downloadFile('contacts')">ダウンロード</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📱 デジタル資料</h2>
+                <div class="digital-materials">
+                    <div class="digital-item">
+                        <h4>🎥 録画講演（イベント後公開予定）</h4>
+                        <p>基調講演・招待講演の録画動画は、イベント終了後にこちらで公開予定です。</p>
+                    </div>
+                    <div class="digital-item">
+                        <h4>💬 参加者掲示板</h4>
+                        <p>参加者同士の情報交換や質疑応答のためのオンライン掲示板をご利用いただけます。</p>
+                        <a href="#" class="btn btn-secondary">掲示板へ</a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="download-notice">
+                <h3>⚠️ ダウンロードに関する注意事項</h3>
+                <ul>
+                    <li>資料は参加者の方のみダウンロード可能です</li>
+                    <li>資料の無断転載・配布は禁止されています</li>
+                    <li>資料は個人の学習・研究目的でのみご利用ください</li>
+                    <li>一部の資料は著作権の都合により、イベント後に削除される場合があります</li>
+                    <li>ダウンロードが困難な場合は、運営事務局までお問い合わせください</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // ログイン状態確認
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = sessionStorage.getItem('memberLoggedIn') || localStorage.getItem('memberLoggedIn');
+            if (!isLoggedIn) {
+                alert('ログインが必要です。');
+                window.location.href = 'login.html';
+                return;
+            }
+        });
+
+        // ファイルダウンロード関数
+        function downloadFile(fileType) {
+            const fileNames = {
+                'guidebook': '参加者ガイドブック.pdf',
+                'lectures': '講演資料集.pdf',
+                'proceedings': '論文集.pdf',
+                'floormap': '会場フロアマップ.pdf',
+                'evaluation': '評価フォーム.pdf',
+                'participants': '参加者名簿.pdf',
+                'contacts': '緊急連絡先一覧.pdf'
+            };
+            
+            const fileName = fileNames[fileType] || 'ファイル.pdf';
+            
+            // 実際の実装では、サーバーからファイルをダウンロード
+            // ここではダウンロードのシミュレーション
+            console.log(`ダウンロード開始: ${fileName}`);
+            
+            // ダウンロード数をカウント（実際の実装ではサーバーサイドで記録）
+            let downloadCount = parseInt(localStorage.getItem(`download_${fileType}`) || '0');
+            downloadCount++;
+            localStorage.setItem(`download_${fileType}`, downloadCount.toString());
+            
+            alert(`${fileName} のダウンロードを開始します。`);
+        }
+
+        // ファイルプレビュー関数
+        function previewFile(fileType) {
+            const fileNames = {
+                'guidebook': '参加者ガイドブック',
+                'lectures': '講演資料集',
+                'proceedings': '論文集'
+            };
+            
+            const fileName = fileNames[fileType] || 'ファイル';
+            
+            // 実際の実装では、PDFビューアーまたは新しいタブでプレビューを表示
+            alert(`${fileName} のプレビューを表示します。`);
+        }
+
+        // URLパラメータから特定のファイルを開く
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileParam = urlParams.get('file');
+        if (fileParam) {
+            // 特定のセクションにスクロール
+            setTimeout(() => {
+                const section = document.querySelector(`button[onclick="downloadFile('${fileParam}')"]`);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    section.style.backgroundColor = '#e3f2fd';
+                    setTimeout(() => {
+                        section.style.backgroundColor = '';
+                    }, 2000);
+                }
+            }, 500);
+        }
+    </script>
+</body>
+</html>

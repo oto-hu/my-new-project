@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参加者専用ページ - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../events/index.html" class="nav-link">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../registration/index.html" class="nav-link">参加登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../abstracts/index.html" class="nav-link">抄録投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">参加者専用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>参加者専用ページ</h1>
+            <p>参加登録済みの方限定のコンテンツです</p>
+        </div>
+    </div>
+
+    <main class="content">
+        <div class="container">
+            <div class="login-required-section" id="loginSection">
+                <div class="login-prompt">
+                    <div class="lock-icon">🔒</div>
+                    <h2>ログインが必要です</h2>
+                    <p>この先のコンテンツは参加登録を完了された方のみアクセス可能です。</p>
+                    <p>参加者番号でログインしてください。</p>
+                    
+                    <div class="login-options">
+                        <a href="login.html" class="btn btn-primary">ログイン</a>
+                        <a href="../registration/index.html" class="btn btn-secondary">参加登録</a>
+                    </div>
+                </div>
+
+                <div class="access-info">
+                    <h3>参加者専用コンテンツについて</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h4>📋 個人ダッシュボード</h4>
+                            <p>参加登録情報の確認・変更</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>📂 配布資料</h4>
+                            <p>講演資料・論文集のダウンロード</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>📅 詳細スケジュール</h4>
+                            <p>参加イベントの詳細タイムテーブル</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>💬 参加者専用掲示板</h4>
+                            <p>参加者同士の情報交換</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>🎫 電子チケット</h4>
+                            <p>QRコード付き参加証明書</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>📧 専用通知</h4>
+                            <p>重要なお知らせと更新情報</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="members-dashboard" id="membersDashboard" style="display: none;">
+                <!-- ログイン後に表示されるコンテンツ -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // ログイン状態確認
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = sessionStorage.getItem('memberLoggedIn');
+            if (isLoggedIn) {
+                showMembersDashboard();
+            }
+        });
+
+        function showMembersDashboard() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('membersDashboard').style.display = 'block';
+            
+            // ダッシュボードの内容を読み込み
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>

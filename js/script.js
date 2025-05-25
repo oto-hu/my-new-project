@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set active navigation item based on current page
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     
     navLinks.forEach(link => {
@@ -40,8 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const href = link.getAttribute('href');
         if (href === currentPage || 
             (currentPage === '' && href === 'index.html') ||
-            (currentPage.includes('news') && href.includes('news')) ||
-            (currentPage.includes('events') && href.includes('events'))) {
+            (currentPath.includes('/news/') && href.includes('news')) ||
+            (currentPath.includes('/events/') && href.includes('events')) ||
+            (currentPath.includes('/registration/') && href.includes('registration')) ||
+            (currentPath.includes('/abstracts/') && href.includes('abstracts')) ||
+            (currentPath.includes('/members/') && href.includes('members'))) {
             link.classList.add('active');
         }
     });
