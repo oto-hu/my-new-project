@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参加者ログイン - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../events/index.html" class="nav-link">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../registration/index.html" class="nav-link">参加登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../abstracts/index.html" class="nav-link">抄録投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">参加者専用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>参加者ログイン</h1>
+            <p>参加者番号とメールアドレスでログイン</p>
+        </div>
+    </div>
+
+    <main class="content">
+        <div class="container">
+            <div class="back-link">
+                <a href="index.html">← 参加者専用ページに戻る</a>
+            </div>
+
+            <div class="login-container">
+                <form class="login-form" id="loginForm">
+                    <h2>ログイン</h2>
+                    
+                    <div class="form-group">
+                        <label for="participantNumber">参加者番号 *</label>
+                        <input type="text" id="participantNumber" name="participantNumber" required placeholder="例：REG12345678">
+                        <small>参加登録完了時に発行された番号を入力してください</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">メールアドレス *</label>
+                        <input type="email" id="email" name="email" required placeholder="登録時のメールアドレス">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="rememberLogin">
+                            <span class="checkbox-text">ログイン状態を保持する</span>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">ログイン</button>
+                    </div>
+
+                    <div class="login-help">
+                        <p><a href="#" id="forgotCredentials">参加者番号を忘れた方はこちら</a></p>
+                        <p><a href="../registration/index.html">まだ参加登録がお済みでない方はこちら</a></p>
+                    </div>
+                </form>
+
+                <div class="demo-credentials">
+                    <h3>デモ用ログイン情報</h3>
+                    <div class="demo-info">
+                        <p><strong>参加者番号:</strong> REG12345678</p>
+                        <p><strong>メールアドレス:</strong> demo@test-society.jp</p>
+                        <p><small>※ テスト環境用のダミーアカウントです</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="forgotModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+                    <h3>参加者番号の確認</h3>
+                    <p>参加者番号を忘れた場合は、登録時のメールアドレスを入力してください。確認メールをお送りします。</p>
+                    
+                    <form id="forgotForm">
+                        <div class="form-group">
+                            <label for="forgotEmail">メールアドレス</label>
+                            <input type="email" id="forgotEmail" name="forgotEmail" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">確認メールを送信</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // ログインフォーム処理
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const participantNumber = document.getElementById('participantNumber').value;
+            const email = document.getElementById('email').value;
+            const rememberLogin = document.querySelector('input[name="rememberLogin"]').checked;
+            
+            // 簡単な認証シミュレーション
+            if (participantNumber === 'REG12345678' && email === 'demo@test-society.jp') {
+                // ログイン成功
+                sessionStorage.setItem('memberLoggedIn', 'true');
+                sessionStorage.setItem('participantNumber', participantNumber);
+                sessionStorage.setItem('participantEmail', email);
+                
+                if (rememberLogin) {
+                    localStorage.setItem('memberLoggedIn', 'true');
+                    localStorage.setItem('participantNumber', participantNumber);
+                }
+                
+                // ダッシュボードへリダイレクト
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('参加者番号またはメールアドレスが正しくありません。');
+            }
+        });
+
+        // 参加者番号忘れモーダル
+        document.getElementById('forgotCredentials').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('forgotModal').style.display = 'block';
+        });
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('forgotModal').style.display = 'none';
+        });
+
+        document.getElementById('forgotForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('確認メールを送信しました。メールボックスをご確認ください。');
+            document.getElementById('forgotModal').style.display = 'none';
+        });
+
+        // モーダル外クリックで閉じる
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('forgotModal');
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // ページ読み込み時にログイン状態確認
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = sessionStorage.getItem('memberLoggedIn') || localStorage.getItem('memberLoggedIn');
+            if (isLoggedIn) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

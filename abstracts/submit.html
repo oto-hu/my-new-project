@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抄録投稿フォーム - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../events/index.html" class="nav-link">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../registration/index.html" class="nav-link">参加登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">抄録投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../members/index.html" class="nav-link">参加者専用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>抄録投稿フォーム</h1>
+            <p>2025年度学術会議への抄録投稿</p>
+        </div>
+    </div>
+
+    <main class="content">
+        <div class="container">
+            <div class="back-link">
+                <a href="index.html">← 抄録投稿トップに戻る</a>
+            </div>
+
+            <div class="deadline-reminder">
+                <h3>📅 投稿締切: 2025年7月31日（木）23:59</h3>
+                <p><a href="guidelines.html" target="_blank">投稿ガイドライン</a>を必ずご確認ください</p>
+            </div>
+
+            <form class="abstract-form" id="abstractForm">
+                <div class="form-section">
+                    <h2>発表者情報</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="presenterLastName">発表者 姓 *</label>
+                            <input type="text" id="presenterLastName" name="presenterLastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="presenterFirstName">発表者 名 *</label>
+                            <input type="text" id="presenterFirstName" name="presenterFirstName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="presenterEmail">発表者メールアドレス *</label>
+                        <input type="email" id="presenterEmail" name="presenterEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="presenterAffiliation">発表者所属 *</label>
+                        <input type="text" id="presenterAffiliation" name="presenterAffiliation" required placeholder="例：○○大学大学院 ○○研究科">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="membershipNumber">会員番号 *</label>
+                        <input type="text" id="membershipNumber" name="membershipNumber" required placeholder="例：REG12345678">
+                        <small>学会会員番号を入力してください</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>共著者情報</h2>
+                    <p>共著者がいる場合は入力してください（最大5名まで）</p>
+                    
+                    <div id="coauthorsContainer">
+                        <div class="coauthor-item">
+                            <h4>共著者1</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="coauthor1LastName">姓</label>
+                                    <input type="text" id="coauthor1LastName" name="coauthor1LastName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="coauthor1FirstName">名</label>
+                                    <input type="text" id="coauthor1FirstName" name="coauthor1FirstName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coauthor1Affiliation">所属</label>
+                                <input type="text" id="coauthor1Affiliation" name="coauthor1Affiliation">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" id="addCoauthor">共著者を追加</button>
+                </div>
+
+                <div class="form-section">
+                    <h2>研究内容</h2>
+                    
+                    <div class="form-group">
+                        <label for="title">研究タイトル *</label>
+                        <input type="text" id="title" name="title" required maxlength="100">
+                        <small><span id="titleCount">0</span>/100文字</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="language">発表言語 *</label>
+                        <select id="language" name="language" required>
+                            <option value="">選択してください</option>
+                            <option value="japanese">日本語</option>
+                            <option value="english">英語</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">研究分野 *</label>
+                        <select id="category" name="category" required>
+                            <option value="">選択してください</option>
+                            <option value="fundamental">基礎理論</option>
+                            <option value="applied">応用研究</option>
+                            <option value="experimental">実験研究</option>
+                            <option value="data-analysis">データ分析</option>
+                            <option value="system">システム開発</option>
+                            <option value="education">教育・学習</option>
+                            <option value="industry">産業応用</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="presentationType">希望発表形式 *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="presentationType" value="oral" required>
+                                <span class="radio-text">口頭発表（15分、抄録800字以内）</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="presentationType" value="poster" required>
+                                <span class="radio-text">ポスター発表（2時間展示、抄録600字以内）</span>
+                            </label>
+                        </div>
+                        <small>最終的な発表形式は審査結果と併せて通知いたします</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>抄録本文</h2>
+                    
+                    <div class="form-group">
+                        <label for="abstract">抄録 *</label>
+                        <textarea id="abstract" name="abstract" required rows="15" placeholder="【背景・目的】
+研究の背景と目的を記述してください。
+
+【方法】
+研究方法を記述してください。
+
+【結果・考察】
+結果と考察を記述してください。
+
+【結論】
+結論を記述してください。"></textarea>
+                        <div class="character-count">
+                            <span id="abstractCount">0</span>/<span id="maxChars">800</span>文字
+                            <span id="charWarning" class="warning" style="display: none;">字数制限を超えています</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="keywords">キーワード</label>
+                        <input type="text" id="keywords" name="keywords" placeholder="キーワード1, キーワード2, キーワード3" maxlength="100">
+                        <small>カンマ区切りで3-5個程度入力してください</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>確認事項</h2>
+                    
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agreement1" required>
+                            <span class="checkbox-text">発表者は本学会の会員であることを確認しました</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agreement2" required>
+                            <span class="checkbox-text">他学会等での発表済み・投稿済みの研究ではないことを確認しました</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agreement3" required>
+                            <span class="checkbox-text">投稿ガイドラインを確認し、規定に従って作成しました</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agreement4" required>
+                            <span class="checkbox-text">採択された場合は必ず学術会議に参加します</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">戻る</button>
+                    <button type="button" class="btn btn-secondary" id="saveAsDraft">下書き保存</button>
+                    <button type="submit" class="btn btn-primary">投稿する</button>
+                </div>
+            </form>
+
+            <div id="submitSuccess" class="success-message" style="display: none;">
+                <h2>✅ 抄録投稿が完了しました</h2>
+                <p>投稿ありがとうございます。確認メールをお送りしました。</p>
+                <div class="submission-number">
+                    <p><strong>投稿番号:</strong> <span id="submissionNumber"></span></p>
+                </div>
+                <div class="next-steps">
+                    <h3>今後の流れ</h3>
+                    <ul>
+                        <li>投稿番号をお控えください</li>
+                        <li>採択結果は8月末までにメールでお知らせします</li>
+                        <li>投稿内容の修正は締切日まで可能です</li>
+                    </ul>
+                </div>
+                <div class="form-actions">
+                    <a href="../index.html" class="btn btn-primary">ホームに戻る</a>
+                    <a href="index.html" class="btn btn-secondary">抄録投稿トップへ</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        let coauthorCount = 1;
+        const maxCoauthors = 5;
+
+        // 文字数カウント
+        function updateCharacterCount() {
+            const abstractText = document.getElementById('abstract').value;
+            const presentationType = document.querySelector('input[name="presentationType"]:checked');
+            const maxChars = presentationType && presentationType.value === 'poster' ? 600 : 800;
+            
+            document.getElementById('maxChars').textContent = maxChars;
+            document.getElementById('abstractCount').textContent = abstractText.length;
+            
+            const warning = document.getElementById('charWarning');
+            if (abstractText.length > maxChars) {
+                warning.style.display = 'inline';
+            } else {
+                warning.style.display = 'none';
+            }
+        }
+
+        // タイトル文字数カウント
+        function updateTitleCount() {
+            const titleText = document.getElementById('title').value;
+            document.getElementById('titleCount').textContent = titleText.length;
+        }
+
+        // 共著者追加
+        function addCoauthor() {
+            if (coauthorCount >= maxCoauthors) {
+                alert('共著者は最大5名まで追加できます。');
+                return;
+            }
+            
+            coauthorCount++;
+            const container = document.getElementById('coauthorsContainer');
+            const coauthorDiv = document.createElement('div');
+            coauthorDiv.className = 'coauthor-item';
+            coauthorDiv.innerHTML = `
+                <h4>共著者${coauthorCount} <button type="button" class="btn-remove" onclick="removeCoauthor(this)">削除</button></h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="coauthor${coauthorCount}LastName">姓</label>
+                        <input type="text" id="coauthor${coauthorCount}LastName" name="coauthor${coauthorCount}LastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="coauthor${coauthorCount}FirstName">名</label>
+                        <input type="text" id="coauthor${coauthorCount}FirstName" name="coauthor${coauthorCount}FirstName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="coauthor${coauthorCount}Affiliation">所属</label>
+                    <input type="text" id="coauthor${coauthorCount}Affiliation" name="coauthor${coauthorCount}Affiliation">
+                </div>
+            `;
+            container.appendChild(coauthorDiv);
+            
+            if (coauthorCount >= maxCoauthors) {
+                document.getElementById('addCoauthor').style.display = 'none';
+            }
+        }
+
+        function removeCoauthor(button) {
+            button.parentElement.parentElement.remove();
+            coauthorCount--;
+            document.getElementById('addCoauthor').style.display = 'inline-block';
+        }
+
+        // イベントリスナー
+        document.getElementById('abstract').addEventListener('input', updateCharacterCount);
+        document.getElementById('title').addEventListener('input', updateTitleCount);
+        document.getElementById('addCoauthor').addEventListener('click', addCoauthor);
+        
+        document.querySelectorAll('input[name="presentationType"]').forEach(input => {
+            input.addEventListener('change', updateCharacterCount);
+        });
+
+        // 下書き保存
+        document.getElementById('saveAsDraft').addEventListener('click', function() {
+            const formData = new FormData(document.getElementById('abstractForm'));
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            localStorage.setItem('abstractDraft', JSON.stringify(data));
+            alert('下書きを保存しました。');
+        });
+
+        // 下書き読み込み
+        function loadDraft() {
+            const draft = localStorage.getItem('abstractDraft');
+            if (draft && confirm('保存された下書きがあります。読み込みますか？')) {
+                const data = JSON.parse(draft);
+                for (let key in data) {
+                    const element = document.querySelector(`[name="${key}"]`);
+                    if (element) {
+                        if (element.type === 'radio' || element.type === 'checkbox') {
+                            if (element.value === data[key]) {
+                                element.checked = true;
+                            }
+                        } else {
+                            element.value = data[key];
+                        }
+                    }
+                }
+                updateCharacterCount();
+                updateTitleCount();
+            }
+        }
+
+        // フォーム送信
+        document.getElementById('abstractForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 文字数チェック
+            const abstractText = document.getElementById('abstract').value;
+            const presentationType = document.querySelector('input[name="presentationType"]:checked');
+            const maxChars = presentationType.value === 'poster' ? 600 : 800;
+            
+            if (abstractText.length > maxChars) {
+                alert(`抄録の文字数が制限を超えています。${maxChars}字以内に収めてください。`);
+                return;
+            }
+            
+            // 投稿処理のシミュレーション
+            const submissionNumber = 'ABS' + Date.now().toString().slice(-8);
+            document.getElementById('submissionNumber').textContent = submissionNumber;
+            
+            // フォームを非表示にして成功メッセージを表示
+            document.getElementById('abstractForm').style.display = 'none';
+            document.getElementById('submitSuccess').style.display = 'block';
+            
+            // 下書きを削除
+            localStorage.removeItem('abstractDraft');
+            
+            // ページトップにスクロール
+            window.scrollTo(0, 0);
+        });
+
+        // ページ読み込み時の処理
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDraft();
+            updateCharacterCount();
+            updateTitleCount();
+        });
+    </script>
+</body>
+</html>

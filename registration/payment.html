@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>決済画面 - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../events/index.html" class="nav-link">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">参加登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../abstracts/index.html" class="nav-link">抄録投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../members/index.html" class="nav-link">参加者専用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>決済画面</h1>
+            <p>参加登録の確認とお支払い</p>
+        </div>
+    </div>
+
+    <main class="content">
+        <div class="container">
+            <div class="payment-container">
+                <div class="payment-summary">
+                    <h2>申込み内容確認</h2>
+                    <div id="summaryContent">
+                        <!-- JavaScript で動的に生成 -->
+                    </div>
+                </div>
+
+                <div class="payment-form" id="paymentForm">
+                    <h2>お支払い情報</h2>
+                    
+                    <div class="payment-method-section" id="creditCardSection" style="display: none;">
+                        <h3>クレジットカード情報</h3>
+                        <div class="form-group">
+                            <label for="cardNumber">カード番号 *</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">有効期限 *</label>
+                                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">セキュリティコード *</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardName">カード名義人 *</label>
+                            <input type="text" id="cardName" name="cardName" placeholder="YAMADA TARO">
+                        </div>
+                    </div>
+
+                    <div class="payment-method-section" id="bankTransferSection" style="display: none;">
+                        <h3>銀行振込先情報</h3>
+                        <div class="bank-info">
+                            <p><strong>銀行名:</strong> テスト銀行</p>
+                            <p><strong>支店名:</strong> 学術支店</p>
+                            <p><strong>口座種別:</strong> 普通</p>
+                            <p><strong>口座番号:</strong> 1234567</p>
+                            <p><strong>口座名義:</strong> テスト学会</p>
+                            <p><strong>振込期限:</strong> 登録完了後1週間以内</p>
+                        </div>
+                        <div class="notice-box">
+                            <p>※ 振込手数料はお客様のご負担となります</p>
+                            <p>※ 振込名義人は登録者のお名前でお願いします</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-method-section" id="onsitePaymentSection" style="display: none;">
+                        <h3>現地決済について</h3>
+                        <div class="notice-box">
+                            <p>当日、受付にて現金またはクレジットカードでのお支払いが可能です。</p>
+                            <p>※ 現地決済の場合、キャンセル時の返金は致しかねます</p>
+                            <p>※ 混雑緩和のため、事前決済をお勧めします</p>
+                        </div>
+                    </div>
+
+                    <div class="total-display">
+                        <h3>お支払い金額: <span id="finalAmount">0</span>円</h3>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">戻る</button>
+                        <button type="button" class="btn btn-primary" id="processPayment">決済を実行</button>
+                    </div>
+                </div>
+
+                <div class="payment-complete" id="paymentComplete" style="display: none;">
+                    <div class="success-message">
+                        <h2>✅ 決済が完了しました</h2>
+                        <p>参加登録ありがとうございます。確認メールをお送りしました。</p>
+                        <div class="registration-number">
+                            <p><strong>登録番号:</strong> <span id="registrationNumber"></span></p>
+                        </div>
+                        <div class="next-steps">
+                            <h3>今後の流れ</h3>
+                            <ul>
+                                <li>確認メールに記載された参加者番号をお控えください</li>
+                                <li>当日は確認メールまたは参加者番号をお持ちください</li>
+                                <li>詳細な案内は開催1週間前にお送りします</li>
+                            </ul>
+                        </div>
+                        <div class="form-actions">
+                            <a href="../index.html" class="btn btn-primary">ホームに戻る</a>
+                            <a href="../members/login.html" class="btn btn-secondary">参加者専用ページへ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventType = urlParams.get('event');
+            
+            let registrationData = null;
+            let totalAmount = '0';
+            
+            // 登録データの取得
+            if (eventType === 'conference') {
+                registrationData = JSON.parse(sessionStorage.getItem('conferenceRegistration') || '{}');
+                totalAmount = sessionStorage.getItem('totalAmount') || '0';
+            } else if (eventType === 'seminar') {
+                registrationData = JSON.parse(sessionStorage.getItem('seminarRegistration') || '{}');
+                totalAmount = sessionStorage.getItem('totalAmount') || '0';
+            }
+            
+            if (!registrationData || Object.keys(registrationData).length === 0) {
+                alert('登録データが見つかりません。最初からやり直してください。');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // 申込み内容の表示
+            displaySummary(registrationData, eventType, totalAmount);
+            
+            // 支払い方法に応じた表示切り替え
+            showPaymentMethod(registrationData.paymentMethod);
+            
+            // 決済ボタンの処理
+            document.getElementById('processPayment').addEventListener('click', function() {
+                processPayment(registrationData, eventType, totalAmount);
+            });
+        });
+        
+        function displaySummary(data, eventType, amount) {
+            const summaryDiv = document.getElementById('summaryContent');
+            const eventName = eventType === 'conference' ? '2025年度学術会議' : '夏季セミナー2025';
+            
+            let html = `
+                <div class="summary-item">
+                    <h3>${eventName}</h3>
+                    <p><strong>参加者:</strong> ${data.lastName} ${data.firstName} 様</p>
+                    <p><strong>メールアドレス:</strong> ${data.email}</p>
+                </div>
+            `;
+            
+            if (data.memberType) {
+                const memberTypeText = {
+                    'regular': '一般会員',
+                    'student': '学生会員',
+                    'member': '会員',
+                    'non-member': '非会員'
+                }[data.memberType] || data.memberType;
+                html += `<p><strong>会員区分:</strong> ${memberTypeText}</p>`;
+            }
+            
+            if (data.paymentMethod) {
+                const paymentText = {
+                    'credit': 'クレジットカード',
+                    'bank': '銀行振込',
+                    'onsite': '現地決済'
+                }[data.paymentMethod] || data.paymentMethod;
+                html += `<p><strong>支払い方法:</strong> ${paymentText}</p>`;
+            }
+            
+            summaryDiv.innerHTML = html;
+            document.getElementById('finalAmount').textContent = amount;
+        }
+        
+        function showPaymentMethod(method) {
+            // すべてのセクションを非表示
+            document.querySelectorAll('.payment-method-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // 選択された支払い方法のセクションを表示
+            if (method === 'credit') {
+                document.getElementById('creditCardSection').style.display = 'block';
+            } else if (method === 'bank') {
+                document.getElementById('bankTransferSection').style.display = 'block';
+            } else if (method === 'onsite') {
+                document.getElementById('onsitePaymentSection').style.display = 'block';
+            }
+        }
+        
+        function processPayment(data, eventType, amount) {
+            const paymentMethod = data.paymentMethod;
+            
+            if (paymentMethod === 'credit') {
+                // クレジットカード決済の検証
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                const cardName = document.getElementById('cardName').value;
+                
+                if (!cardNumber || !expiryDate || !cvv || !cardName) {
+                    alert('クレジットカード情報をすべて入力してください。');
+                    return;
+                }
+            }
+            
+            // 決済処理のシミュレーション
+            document.getElementById('paymentForm').style.display = 'none';
+            
+            setTimeout(() => {
+                // 登録番号の生成
+                const registrationNumber = 'REG' + Date.now().toString().slice(-8);
+                document.getElementById('registrationNumber').textContent = registrationNumber;
+                
+                // 完了画面の表示
+                document.getElementById('paymentComplete').style.display = 'block';
+                
+                // セッションデータのクリア
+                sessionStorage.removeItem('conferenceRegistration');
+                sessionStorage.removeItem('seminarRegistration');
+                sessionStorage.removeItem('totalAmount');
+                
+                // ページトップにスクロール
+                window.scrollTo(0, 0);
+            }, 2000);
+        }
+        
+        // カード番号のフォーマット
+        document.getElementById('cardNumber')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '');
+            let formattedValue = value.replace(/(.{4})/g, '$1 ').trim();
+            if (formattedValue.length > 19) formattedValue = formattedValue.slice(0, 19);
+            e.target.value = formattedValue;
+        });
+        
+        // 有効期限のフォーマット
+        document.getElementById('expiryDate')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
