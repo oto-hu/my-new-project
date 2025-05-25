@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イベント - テスト学会</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-logo">テスト学会</h1>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../about.html" class="nav-link">学会について</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../news/index.html" class="nav-link">お知らせ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">イベント</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>イベント情報</h1>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container">
+                <h2>開催予定のイベント</h2>
+                <div class="item-list">
+                    <article class="item-card">
+                        <div class="item-meta">
+                            <span class="event-category">セミナー</span>
+                            <span class="event-date">2025年6月15日（土）13:00-17:00</span>
+                        </div>
+                        <h3><a href="details/summer-seminar.html">夏季セミナー2025「AI技術の最新動向と応用」</a></h3>
+                        <p><strong>会場：</strong>東京国際会議場 3階会議室A</p>
+                        <p><strong>定員：</strong>200名</p>
+                        <p>最新のAI技術について、研究の最前線で活躍する専門家による講演とディスカッションを行います。機械学習、深層学習の最新手法から実用化事例まで幅広くカバーします。</p>
+                        <div class="event-status">
+                            <span class="status-badge accepting">申込受付中</span>
+                        </div>
+                    </article>
+
+                    <article class="item-card">
+                        <div class="item-meta">
+                            <span class="event-category">学術会議</span>
+                            <span class="event-date">2025年10月15日（土）～16日（日）</span>
+                        </div>
+                        <h3><a href="details/annual-conference.html">2025年度年次学術会議</a></h3>
+                        <p><strong>会場：</strong>東京国際会議場</p>
+                        <p><strong>テーマ：</strong>持続可能な研究開発とイノベーション</p>
+                        <p>年に一度の大規模な学術会議です。基調講演、シンポジウム、一般発表、ポスターセッションなどを通じて、最新の研究成果を共有し、活発な議論を行います。</p>
+                        <div class="event-status">
+                            <span class="status-badge upcoming">申込開始予定</span>
+                        </div>
+                    </article>
+                </div>
+
+                <h2>過去のイベント</h2>
+                <div class="item-list">
+                    <article class="item-card past-event">
+                        <div class="item-meta">
+                            <span class="event-category">セミナー</span>
+                            <span class="event-date">2025年4月20日（土）</span>
+                        </div>
+                        <h3>春季セミナー2025「次世代技術と社会実装」</h3>
+                        <p><strong>会場：</strong>テスト大学 講義棟A</p>
+                        <p><strong>参加者：</strong>約200名</p>
+                        <p>新技術の社会実装における課題と展望について議論しました。産業界と学術界の連携強化の重要性が再確認されました。</p>
+                        <div class="event-status">
+                            <span class="status-badge completed">開催終了</span>
+                        </div>
+                    </article>
+
+                    <article class="item-card past-event">
+                        <div class="item-meta">
+                            <span class="event-category">ワークショップ</span>
+                            <span class="event-date">2025年3月10日（金）</span>
+                        </div>
+                        <h3>若手研究者交流ワークショップ</h3>
+                        <p><strong>会場：</strong>学会事務局会議室</p>
+                        <p><strong>参加者：</strong>約30名</p>
+                        <p>博士課程学生・ポスドクを対象とした交流イベント。研究発表と討論を通じて、若手研究者同士のネットワーク構築を図りました。</p>
+                        <div class="event-status">
+                            <span class="status-badge completed">開催終了</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 テスト学会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+
+    <style>
+    .event-category {
+        background: #3498db;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        margin-right: 1rem;
+    }
+
+    .event-status {
+        margin-top: 1rem;
+    }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .status-badge.accepting {
+        background: #27ae60;
+        color: white;
+    }
+
+    .status-badge.upcoming {
+        background: #f39c12;
+        color: white;
+    }
+
+    .status-badge.completed {
+        background: #95a5a6;
+        color: white;
+    }
+
+    .past-event {
+        opacity: 0.8;
+    }
+
+    .past-event h3 {
+        color: #666;
+    }
+    </style>
+</body>
+</html>
