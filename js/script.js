@@ -49,4 +49,28 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
+
+    // Test automation functionality
+    const testButton = document.getElementById('test-button');
+    const testResult = document.getElementById('test-result');
+    
+    if (testButton && testResult) {
+        testButton.addEventListener('click', function() {
+            // Simulate a test execution
+            testButton.disabled = true;
+            testButton.textContent = 'テスト中...';
+            
+            setTimeout(() => {
+                const success = Math.random() > 0.3; // 70% success rate
+                
+                testResult.className = 'test-result ' + (success ? 'success' : 'error');
+                testResult.textContent = success 
+                    ? '✅ 自動テストが正常に完了しました！' 
+                    : '❌ テストでエラーが発生しました。もう一度お試しください。';
+                
+                testButton.disabled = false;
+                testButton.textContent = 'テスト実行';
+            }, 2000);
+        });
+    }
 });
