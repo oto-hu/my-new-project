@@ -1,0 +1,260 @@
+# .github/workflows/claude-pr-test.yml
+name: Claude PR Auto Test
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+  issue_comment:
+    types: [created]
+
+jobs:
+  # Claude生成のPRに対する自動テスト
+  auto-test:
+    if: |
+      (github.event_name == 'pull_request') ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude'))
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # PRの場合はPRのコードをチェックアウト
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        id: lint
+        run: |
+          echo "## 🔍 Linting Results" >> $GITHUB_STEP_SUMMARY
+          if npm run lint; then
+            echo "✅ Linting passed" >> $GITHUB_STEP_SUMMARY
+            echo "lint_status=passed" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Linting failed" >> $GITHUB_STEP_SUMMARY
+            echo "lint_status=failed" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+
+      - name: Run type checking
+        id: typecheck
+        run: |
+          echo "## 🔬 Type Checking Results" >> $GITHUB_STEP_SUMMARY
+          if npm run type-check; then
+            echo "✅ Type checking passed" >> $GITHUB_STEP_SUMMARY
+            echo "typecheck_status=passed" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Type checking failed" >> $GITHUB_STEP_SUMMARY
+            echo "typecheck_status=failed" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+
+      - name: Run tests
+        id: test
+        run: |
+          echo "## 🧪 Test Results" >> $GITHUB_STEP_SUMMARY
+          if npm test -- --coverage --reporter=json --outputFile=test-results.json; then
+            echo "✅ All tests passed" >> $GITHUB_STEP_SUMMARY
+            echo "test_status=passed" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Tests failed" >> $GITHUB_STEP_SUMMARY
+            echo "test_status=failed" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+
+      - name: Build project
+        id: build
+        run: |
+          echo "## 🏗️ Build Results" >> $GITHUB_STEP_SUMMARY
+          if npm run build; then
+            echo "✅ Build successful" >> $GITHUB_STEP_SUMMARY
+            echo "build_status=passed" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Build failed" >> $GITHUB_STEP_SUMMARY
+            echo "build_status=failed" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+
+      - name: Generate test report
+        if: always()
+        run: |
+          # テスト結果のサマリーを生成
+          echo "# 🤖 Claude PR Automated Test Report" > test-report.md
+          echo "" >> test-report.md
+          echo "## Test Summary" >> test-report.md
+          echo "" >> test-report.md
+          
+          # 各ステップの結果をまとめる
+          if [ "${{ steps.lint.outputs.lint_status }}" = "passed" ]; then
+            echo "- ✅ **Linting**: Passed" >> test-report.md
+          else
+            echo "- ❌ **Linting**: Failed" >> test-report.md
+          fi
+          
+          if [ "${{ steps.typecheck.outputs.typecheck_status }}" = "passed" ]; then
+            echo "- ✅ **Type Checking**: Passed" >> test-report.md
+          else
+            echo "- ❌ **Type Checking**: Failed" >> test-report.md
+          fi
+          
+          if [ "${{ steps.test.outputs.test_status }}" = "passed" ]; then
+            echo "- ✅ **Unit Tests**: Passed" >> test-report.md
+          else
+            echo "- ❌ **Unit Tests**: Failed" >> test-report.md
+          fi
+          
+          if [ "${{ steps.build.outputs.build_status }}" = "passed" ]; then
+            echo "- ✅ **Build**: Successful" >> test-report.md
+          else
+            echo "- ❌ **Build**: Failed" >> test-report.md
+          fi
+          
+          echo "" >> test-report.md
+          
+          # 全体的な判定
+          if [ "${{ steps.lint.outputs.lint_status }}" = "passed" ] && 
+             [ "${{ steps.typecheck.outputs.typecheck_status }}" = "passed" ] && 
+             [ "${{ steps.test.outputs.test_status }}" = "passed" ] && 
+             [ "${{ steps.build.outputs.build_status }}" = "passed" ]; then
+            echo "## ✅ Overall Status: READY FOR REVIEW" >> test-report.md
+            echo "All automated checks have passed. This PR is ready for human review." >> test-report.md
+          else
+            echo "## ❌ Overall Status: NEEDS ATTENTION" >> test-report.md
+            echo "Some checks have failed. Please review the issues above before proceeding." >> test-report.md
+          fi
+          
+          echo "" >> test-report.md
+          echo "---" >> test-report.md
+          echo "*This report was generated automatically for Claude-created changes.*" >> test-report.md
+
+      - name: Comment PR with test results  
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const testReport = fs.readFileSync('test-report.md', 'utf8');
+            
+            // 既存のボットコメントを探して更新 or 新規作成
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Claude PR Automated Test Report')
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: testReport
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: testReport
+              });
+            }
+
+      - name: Set PR status
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const allPassed = 
+              '${{ steps.lint.outputs.lint_status }}' === 'passed' &&
+              '${{ steps.typecheck.outputs.typecheck_status }}' === 'passed' &&
+              '${{ steps.test.outputs.test_status }}' === 'passed' &&
+              '${{ steps.build.outputs.build_status }}' === 'passed';
+            
+            // PRにラベルを設定
+            if (allPassed) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['✅ auto-tests-passed', 'ready-for-review']
+              });
+              
+              // 失敗ラベルがあれば削除
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: '❌ auto-tests-failed'
+                });
+              } catch (e) {
+                // ラベルが存在しない場合は無視
+              }
+            } else {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['❌ auto-tests-failed', 'needs-attention']
+              });
+              
+              // 成功ラベルがあれば削除
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: '✅ auto-tests-passed'
+                });
+              } catch (e) {
+                // ラベルが存在しない場合は無視
+              }
+            }
+
+---
+
+# package.jsonに必要なスクリプトの例
+# package.json (必要な部分のみ)
+{
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix", 
+    "type-check": "tsc --noEmit",
+    "build": "npm run type-check && npm run build:prod",
+    "build:prod": "webpack --mode production"
+  }
+}
+
+---
+
+# CLAUDE.md設定例
+# プロジェクトルートに配置
+## Testing Requirements
+
+すべての新機能・バグ修正には以下を含めてください：
+
+- **単体テスト**: 新しい関数・コンポーネントのテスト
+- **型安全性**: TypeScriptの型チェックをパス
+- **コードスタイル**: ESLintルールに準拠
+- **ビルド確認**: プロダクションビルドが成功する
+
+## PR作成時の注意
+
+- PRタイトルに変更内容を明記
+- テスト結果は自動で表示されるので確認してください
+- すべての自動チェックが通過してから人間によるレビューを依頼
