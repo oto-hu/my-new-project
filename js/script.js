@@ -64,9 +64,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const success = Math.random() > 0.3; // 70% success rate
                 
                 testResult.className = 'test-result ' + (success ? 'success' : 'error');
+                const timestamp = new Date().toLocaleString('ja-JP', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
                 testResult.textContent = success 
-                    ? '✅ 自動テストが正常に完了しました！' 
-                    : '❌ テストでエラーが発生しました。もう一度お試しください。';
+                    ? `✅ 自動テストが正常に完了しました！ (${timestamp})` 
+                    : `❌ テストでエラーが発生しました。もう一度お試しください。 (${timestamp})`;
                 
                 testButton.disabled = false;
                 testButton.textContent = 'テスト実行';
